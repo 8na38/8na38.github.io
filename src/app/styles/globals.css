@@ -1,0 +1,111 @@
+:root {
+  --background: #fff;
+  --foreground: #353535;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+
+  --min-viewport: 769;
+  --max-viewport: 1920;
+  --slope: calc((var(--max-size) - var(--min-size)) / (var(--max-viewport) - var(--min-viewport)));
+  --intercept: calc(var(--min-size) - var(--slope) * var(--min-viewport));
+  --fluid-size: calc(var(--slope) * 100vw + var(--intercept) / 16 * 1rem);
+  --clamp-size: clamp(var(--min-size) / 16 * 1rem, var(--fluid-size), var(--max-size) / 16 * 1rem);
+}
+
+ul,
+ol {
+  padding-left: 1em;
+}
+
+a {
+  color: inherit;
+  transition: opacity 0.2s;
+  text-decoration: underline;
+  display: block;
+}
+@media (any-hover: hover) {
+  a:hover {
+    opacity: 0.7;
+  }
+}
+
+:is(ol,ul,p) + :is(ol,ul,p) {
+  margin-top: 1em;
+}
+
+.background {
+  position: fixed;
+  z-index: -1;
+}
+
+.header {
+  position: fixed;
+  top: 10%;
+  left: 20px;
+}
+
+.header__ul {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  align-items: center;
+  gap: 2em;
+  padding-left: 0;
+}
+.header__li {
+  writing-mode: vertical-rl;
+  white-space: nowrap;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  font-size: var(--clamp-size);
+  transform: rotate(-180deg);
+  text-orientation: mixed;
+  --min-size: 16;
+  --max-size: 24;
+}
+.header__li:has(svg) {
+  transform: rotate(0);
+}
+.header__li a {
+  text-decoration: none;
+  padding: 6px;
+  transition: color 0.2s;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--foreground);
+  text-stroke: 1px var(--foreground);
+}
+.header__li svg path {
+  transition: fill 0.2s;
+  stroke: var(--foreground);
+  fill: transparent;
+}
+@media (any-hover: hover) {
+  .header__li a {
+    opacity: 1;
+  }
+  .header__li a:hover {
+    color: var(--foreground);
+  }
+  .header__li a:hover svg path {
+    fill: var(--foreground);
+  }
+}

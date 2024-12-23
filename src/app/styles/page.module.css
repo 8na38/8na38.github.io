@@ -1,0 +1,15 @@
+
+
+.container {
+  margin-inline: auto;
+  width: min(90%,980px);
+  padding: max(10%,90px) 0 160px 44px;
+}
+
+.content + .content {
+  margin-top: 80px;
+}
+
+.lead {
+  margin-top: 24px;
+}

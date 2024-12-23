@@ -1,0 +1,14 @@
+.content {
+  height: 100vh;
+  display: grid;
+  place-content: center;
+}
+.title {
+  --min-size: 22;
+  --max-size: 62;
+  font-size: var(--clamp-size);
+  --speace: .8em;
+  letter-spacing: var(--speace);
+  padding-left: var(--speace); /* letter-spacing分擬似的に中央揃え */
+  text-transform: uppercase;
+}
